@@ -2,6 +2,8 @@
 #numbers to words assignment/.
 def fiw(var)
   figures_to_words = {
+      1000000000000 => "trillion",
+      1000000000 => "billion",
       1000000 => "million",
       1000 => "thousand",
       100 => "hundred",
@@ -39,12 +41,12 @@ def fiw(var)
     if var == 0
       return str
     elsif var.to_s.length == 1 && var/num > 0
-      return str + "#{name}"      
+      return str + "#{name} "      
     elsif var < 100 && var/num > 0
-      return str + "#{name}" if var%num == 0
-      return str + "#{name}" + fiw(var%num)
+      return str + "#{name} " if var%num == 0
+      return str + "#{name} " + fiw(var%num)
     elsif var/num > 0
-      return str + fiw(var/num) + "#{name}" + fiw(var%num)
+      return str + fiw(var/num) + "#{name} " + fiw(var%num)
     end
   end
 end
