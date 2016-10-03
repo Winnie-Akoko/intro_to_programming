@@ -1,4 +1,4 @@
-def for_words (integer)
+def figures_in_words (integer)
   one_array = ['zero','one','two','three','four','five','six','seven','eight','nine']
   teen_array = ['','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
   ten_array = ['','ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety']
@@ -6,59 +6,59 @@ def for_words (integer)
   result =  ""
 
   #for billions
-  writing = integer / 1_000_000_000
+  numbers = integer / 1_000_000_000
   remainder = integer % 1_000_000_000
 
-  if writing > 0
-    result << in_words(writing) << " billion "
+  if numbers > 0
+    result << figures_in_words(numbers) << " billion "
     integer = remainder
   end
 
   #for millions
-  writing = integer / 1_000_000
+  numbers = integer / 1_000_000
   remainder = integer % 1_000_000
 
-  if writing > 0
-    result << in_words(writing) << " million "
+  if numbers > 0
+    result << figures_in_words(numbers) << " million "
     integer = remainder
   end
 
   #for thousands 
-  writing = integer / 1000
+  numbers = integer / 1000
   remainder = integer % 1000
 
-  if writing > 0
-    result << in_words(writing) << " thousand "
+  if numbers > 0
+    result << figures_in_words(numbers) << " thousand "
     integer = remainder
   end
 
   #for hundreds
-  writing = integer / 100
+  numbers = integer / 100
   remainder = integer % 100
 
-  if writing > 0
-    result << in_words(writing) << " hundred "
+  if numbers > 0
+    result << figures_in_words(numbers) << " hundred "
     integer = remainder
   end
 
   #for tens!!!
-  writing = integer / 10
+  numbers = integer / 10
   remainder = integer % 10
 
-  if writing > 0 
-    if writing == 1 && remainder > 0
-      result << teens_array[remainder]
+  if numbers > 0 
+    if numbers == 1 && remainder > 0
+      result << teen_array[remainder]
       remainder = 0
     else
-      result << tens_array[writing]
+      result << ten_array[numbers]
     end
   end
 
-  writing = remainder
+  numbers = remainder
 
   #for ones!!!!
-  if writing >= 0
-    result << ones_array[writing]
+  if numbers >= 0
+    result << one_array[numbers]
   end
 
   result
@@ -66,8 +66,8 @@ def for_words (integer)
 end
 
 
-p words(4) # => "four"
-p words(15) # => "fifteen"
-p words(101) # => "one hundred one" 
-p words(9915) # => "nine thousand nine hundred fifteen"
-p words(2014567896) # => 
+p figures_in_words(4) # => "four"
+p figures_in_words(15) # => "fifteen"
+p figures_in_words(101) # => "one hundred one" 
+p figures_in_words(9915) # => "nine thousand nine hundred fifteen"
+p figures_in_words(2014567896) # => 
