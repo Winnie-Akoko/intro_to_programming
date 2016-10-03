@@ -1,56 +1,50 @@
 
 #numbers to words assignment/.
-def in_words(var)
-  numbers_to_name = {
-      1 => "one",
-      2 => "two",
-      3 => "three",
-      4 => "four",
-      5 => "five",
-      6 => "six",
-      7 => "seven",
-      8 => "eight",
-      9 => "nine",
-      10 => "ten",
-      11 => "eleven",
-      12 => "twelve",
-      13 => "thirteen",
-      14 => "fourteen",
-      15 => "fifteen",
-      16 => "sixteen",
-      17 => "seventeen",
-      18 => "eighteen",
-      19 => "nineteen",
-      20 => "twenty",
-      30 => "thirty",
-      40 => "forty",
-      50 => "fifty",
-      60 => "sixty",
-      70 => "seventy",
-      80 => "eighty",
-      90 => "ninety",
-      100 => "hundred",
-      1000 => "thousand",
+def fiw(var)
+  figures_to_words = {
       1000000 => "million",
-      1000000000 => "billion"
+      1000 => "thousand",
+      100 => "hundred",
+      90 => "ninety",
+      80 => "eighty",
+      70 => "seventy",
+      60 => "sixty",
+      50 => "fifty",
+      40 => "forty",
+      30 => "thirty",
+      20 => "twenty",
+      19=>"nineteen",
+      18=>"eighteen",
+      17=>"seventeen", 
+      16=>"sixteen",
+      15=>"fifteen",
+      14=>"fourteen",
+      13=>"thirteen",              
+      12=>"twelve",
+      11 => "eleven",
+      10 => "ten",
+      9 => "nine",
+      8 => "eight",
+      7 => "seven",
+      6 => "six",
+      5 => "five",
+      4 => "four",
+      3 => "three",
+      2 => "two",
+      1 => "one"
     }
+  
   str = ""
-  numbers_to_name.each do |num, name|
+  figures_to_words.each do |num, name|
     if var == 0
-      #puts "zero"
       return str
     elsif var.to_s.length == 1 && var/num > 0
       return str + "#{name}"      
     elsif var < 100 && var/num > 0
       return str + "#{name}" if var%num == 0
-      return str + "#{name} " + in_words(var%num)
+      return str + "#{name}" + fiw(var%num)
     elsif var/num > 0
-      return str + in_words(var/num) + " #{name} " + in_words(var%num)
+      return str + fiw(var/num) + "#{name}" + fiw(var%num)
     end
   end
 end
-
-
-
-#puts in_words(4) == "four"
-#puts in_words(27) == "twenty seven"
