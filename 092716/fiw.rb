@@ -1,52 +1,73 @@
+def for_words (integer)
+  one_array = ['zero','one','two','three','four','five','six','seven','eight','nine']
+  teen_array = ['','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
+  ten_array = ['','ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety']
 
-#numbers to words assignment/.
-def fiw(var)
-  figures_to_words = {
-      1000000000000 => "trillion",
-      1000000000 => "billion",
-      1000000 => "million",
-      1000 => "thousand",
-      100 => "hundred",
-      90 => "ninety",
-      80 => "eighty",
-      70 => "seventy",
-      60 => "sixty",
-      50 => "fifty",
-      40 => "forty",
-      30 => "thirty",
-      20 => "twenty",
-      19=>"nineteen",
-      18=>"eighteen",
-      17=>"seventeen", 
-      16=>"sixteen",
-      15=>"fifteen",
-      14=>"fourteen",
-      13=>"thirteen",              
-      12=>"twelve",
-      11 => "eleven",
-      10 => "ten",
-      9 => "nine",
-      8 => "eight",
-      7 => "seven",
-      6 => "six",
-      5 => "five",
-      4 => "four",
-      3 => "three",
-      2 => "two",
-      1 => "one"
-    }
-  
-  str = ""
-  figures_to_words.each do |num, name|
-    if var == 0
-      return str
-    elsif var.to_s.length == 1 && var/num > 0
-      return str + "#{name} "      
-    elsif var < 100 && var/num > 0
-      return str + "#{name} " if var%num == 0
-      return str + "#{name} " + fiw(var%num)
-    elsif var/num > 0
-      return str + fiw(var/num) + "#{name} " + fiw(var%num)
+  result =  ""
+
+  #for billions
+  writing = integer / 1_000_000_000
+  remainder = integer % 1_000_000_000
+
+  if writing > 0
+    result << in_words(writing) << " billion "
+    integer = remainder
+  end
+
+  #for millions
+  writing = integer / 1_000_000
+  remainder = integer % 1_000_000
+
+  if writing > 0
+    result << in_words(writing) << " million "
+    integer = remainder
+  end
+
+  #for thousands 
+  writing = integer / 1000
+  remainder = integer % 1000
+
+  if writing > 0
+    result << in_words(writing) << " thousand "
+    integer = remainder
+  end
+
+  #for hundreds
+  writing = integer / 100
+  remainder = integer % 100
+
+  if writing > 0
+    result << in_words(writing) << " hundred "
+    integer = remainder
+  end
+
+  #for tens!!!
+  writing = integer / 10
+  remainder = integer % 10
+
+  if writing > 0 
+    if writing == 1 && remainder > 0
+      result << teens_array[remainder]
+      remainder = 0
+    else
+      result << tens_array[writing]
     end
   end
+
+  writing = remainder
+
+  #for ones!!!!
+  if writing >= 0
+    result << ones_array[writing]
+  end
+
+  result
+
 end
+
+
+p words(4) # => "four"
+p words(15) # => "fifteen"
+p words(101) # => "one hundred one" 
+p words(9915) # => "nine thousand nine hundred fifteen"
+p words(2014567896) # => 
